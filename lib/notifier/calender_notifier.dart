@@ -43,7 +43,6 @@ class CalenderStateNotifier extends StateNotifier<CalenderListState> {
   }
 
   void resisterAmount() async {
-    print("ここ");
     await _firestore.collection("usageAmount").doc("BYbMGRkGPldRswU5nd8Q").set(<String, dynamic>{
       'amount': 100,
       'memo': "aa",
