@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "59418746043",
+    "project_id": "anything-that-i-like",
+    "storage_bucket": "anything-that-i-like.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59418746043:android:d57f0044ff71908b2e5d9e",
+        "android_client_info": {
+          "package_name": "com.example.anything_that_i_like"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC2hTCTCzualmUo6X1ubwwt3fCeWXFZCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

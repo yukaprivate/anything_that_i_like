@@ -1,0 +1,28 @@
+{
+	"Freezed": {
+		"prefix": "freezed",
+		"body": [
+			"// ignore: unused_import",
+			"import 'package:flutter/foundation.dart';",
+			"import 'package:freezed_annotation/freezed_annotation.dart';",
+			"",
+			"part '$TM_FILENAME_BASE.freezed.dart';",
+			"// 以下の1行はDTOなどJSONとDartのクラスを相互変換したい場合のみ残してください",
+			"part '$TM_FILENAME_BASE.g.dart';",
+			"",
+			"@freezed",
+			"class $1 with _\\$$1 {",
+			"  // ignore: unused_element",
+			"  const $1._();",
+			"",
+			"  const factory $1({",
+			"    $2",
+			"  }) = _$1;",
+			"",
+			"  // 以下のメソッドはDTOなどJSONとDartのクラスを相互変換したい場合のみ残してください",
+			"  factory $1.fromJson(Map<String, dynamic> json) => _\\$$1FromJson(json);",
+			"}"
+		],
+		"description": "Freezedクラス"
+	},
+}
