@@ -48,6 +48,5 @@ class CalenderStateNotifier extends StateNotifier<CalenderListState> {
       'memo': "aa",
       'date': DateTime.now(),
     });
-    print("これ");
   }
 }
