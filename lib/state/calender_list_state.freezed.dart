@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CalenderListState {
   bool get isLoading => throw _privateConstructorUsedError;
   List<DateTime> get dateList => throw _privateConstructorUsedError;
+  DateTime get selectDate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CalenderListStateCopyWith<CalenderListState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $CalenderListStateCopyWith<$Res> {
           CalenderListState value, $Res Function(CalenderListState) then) =
       _$CalenderListStateCopyWithImpl<$Res, CalenderListState>;
   @useResult
-  $Res call({bool isLoading, List<DateTime> dateList});
+  $Res call({bool isLoading, List<DateTime> dateList, DateTime selectDate});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$CalenderListStateCopyWithImpl<$Res, $Val extends CalenderListState>
   $Res call({
     Object? isLoading = null,
     Object? dateList = null,
+    Object? selectDate = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -58,6 +60,10 @@ class _$CalenderListStateCopyWithImpl<$Res, $Val extends CalenderListState>
           ? _value.dateList
           : dateList // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      selectDate: null == selectDate
+          ? _value.selectDate
+          : selectDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$_CalenderListStateCopyWith<$Res>
       __$$_CalenderListStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, List<DateTime> dateList});
+  $Res call({bool isLoading, List<DateTime> dateList, DateTime selectDate});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$_CalenderListStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? dateList = null,
+    Object? selectDate = null,
   }) {
     return _then(_$_CalenderListState(
       isLoading: null == isLoading
@@ -96,6 +103,10 @@ class __$$_CalenderListStateCopyWithImpl<$Res>
           ? _value._dateList
           : dateList // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      selectDate: null == selectDate
+          ? _value.selectDate
+          : selectDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -105,7 +116,9 @@ class __$$_CalenderListStateCopyWithImpl<$Res>
 class _$_CalenderListState extends _CalenderListState
     with DiagnosticableTreeMixin {
   const _$_CalenderListState(
-      {this.isLoading = false, final List<DateTime> dateList = const []})
+      {this.isLoading = false,
+      final List<DateTime> dateList = const [],
+      required this.selectDate})
       : _dateList = dateList,
         super._();
 
@@ -122,8 +135,11 @@ class _$_CalenderListState extends _CalenderListState
   }
 
   @override
+  final DateTime selectDate;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CalenderListState(isLoading: $isLoading, dateList: $dateList)';
+    return 'CalenderListState(isLoading: $isLoading, dateList: $dateList, selectDate: $selectDate)';
   }
 
   @override
@@ -132,7 +148,8 @@ class _$_CalenderListState extends _CalenderListState
     properties
       ..add(DiagnosticsProperty('type', 'CalenderListState'))
       ..add(DiagnosticsProperty('isLoading', isLoading))
-      ..add(DiagnosticsProperty('dateList', dateList));
+      ..add(DiagnosticsProperty('dateList', dateList))
+      ..add(DiagnosticsProperty('selectDate', selectDate));
   }
 
   @override
@@ -142,12 +159,14 @@ class _$_CalenderListState extends _CalenderListState
             other is _$_CalenderListState &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            const DeepCollectionEquality().equals(other._dateList, _dateList));
+            const DeepCollectionEquality().equals(other._dateList, _dateList) &&
+            (identical(other.selectDate, selectDate) ||
+                other.selectDate == selectDate));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, const DeepCollectionEquality().hash(_dateList));
+  int get hashCode => Object.hash(runtimeType, isLoading,
+      const DeepCollectionEquality().hash(_dateList), selectDate);
 
   @JsonKey(ignore: true)
   @override
@@ -160,13 +179,16 @@ class _$_CalenderListState extends _CalenderListState
 abstract class _CalenderListState extends CalenderListState {
   const factory _CalenderListState(
       {final bool isLoading,
-      final List<DateTime> dateList}) = _$_CalenderListState;
+      final List<DateTime> dateList,
+      required final DateTime selectDate}) = _$_CalenderListState;
   const _CalenderListState._() : super._();
 
   @override
   bool get isLoading;
   @override
   List<DateTime> get dateList;
+  @override
+  DateTime get selectDate;
   @override
   @JsonKey(ignore: true)
   _$$_CalenderListStateCopyWith<_$_CalenderListState> get copyWith =>

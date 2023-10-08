@@ -13,6 +13,8 @@ class HomePageScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(calenderProvider.notifier);
+    final dateList = ref.watch(calenderProvider.select((value) => value.dateList));
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -24,81 +26,107 @@ class HomePageScreen extends ConsumerWidget {
           ),
         backgroundColor: Colors.yellow[200],
       ),
-      body: Center(
-        child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.brown,
-                        ),
+      body: _Body(),
+      bottomNavigationBar: const BottomNavigation(),
+    );
+  }
+}
+
+class _Body extends ConsumerWidget {
+  const _Body({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(calenderProvider.notifier);
+    final selectedStrYearMonth = ref.watch(calenderProvider.select((value) => value.selectedStrYearMonth));
+    final disableArrowBackIcon = ref.watch(calenderProvider.select((value) => value.disableArrowBackIcon));
+    final disableArrowForwardIcon = ref.watch(calenderProvider.select((value) => value.disableArrowForwardIcon));
+    return Center(
+      child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: disableArrowBackIcon ? null : () => notifier.changeMonth(to: -1),
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: disableArrowBackIcon ? Colors.grey[300] : Colors.brown,
                       ),
-                    const Text(
-                      "2023年 6月",
-                      style: TextStyle(
-                        color: Colors.brown,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
+                    ),
+                  Text(
+                    selectedStrYearMonth,
+                    style: const TextStyle(
+                      color: Colors.brown,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                    ),
+                  IconButton(
+                    onPressed: disableArrowForwardIcon ? null : () => notifier.changeMonth(to: 1),
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      color: disableArrowForwardIcon ? Colors.grey[300] : Colors.brown,
                       ),
-                      ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.brown,),
-                      ),
+                    ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: const [
+                    _OneWeekItems(),
+                    _OneWeekItems(),
+                    _Summary(),
                   ],
                 ),
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const _OneWeekItems(),
-                // const SizedBox(height: 50,),
-                const _OneWeekItems(),
-                Container(
-                padding: const EdgeInsets.fromLTRB(60, 0, 60, 30),
-                child: Column(
-                  children: const [
-                     SizedBox(
-                      width: double.infinity,
-                      child: Text(
-                        "【 今月の合計 】",
-                        textAlign: TextAlign.left,
-                        ),
-                    ),
-                    _ItemRow(
-                      title: "目標",
-                      memo: "2870円",
-                      canEdit: false,
-                    ),
-                    _ItemRow(
-                      title: "残り",
-                      memo: "0円",
-                      canEdit: false,
-                    ),
-                    _ItemRow(
-                      title: "合計",
-                      memo: "2870円",
-                      canEdit: false,
-                    ),
-                  ]
-                ),
-                ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-      ),
-      bottomNavigationBar: const BottomNavigation(),
+            )
+          ],
+        ),
+    );
+  }
+}
+
+class _Summary extends StatelessWidget {
+  const _Summary({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+    padding: const EdgeInsets.fromLTRB(60, 0, 60, 30),
+    child: Column(
+      children: const [
+        SizedBox(
+          width: double.infinity,
+          child: Text(
+            "【 今月の合計 】",
+            textAlign: TextAlign.left,
+            ),
+        ),
+        _ItemRow(
+          title: "目標",
+          memo: "2870円",
+          canEdit: false,
+        ),
+        _ItemRow(
+          title: "残り",
+          memo: "0円",
+          canEdit: false,
+        ),
+        _ItemRow(
+          title: "合計",
+          memo: "2870円",
+          canEdit: false,
+        ),
+      ]
+    ),
     );
   }
 }
@@ -129,7 +157,7 @@ class _OneWeekItems extends StatelessWidget {
                 canEdit: true,
               )
             )
-      ]
+          ]
           ),
         ),
         const Divider(
